@@ -2,7 +2,6 @@ package com.kiryukhin.auth_service.security;
 
 import com.kiryukhin.auth_service.security.jwt.JwtRequestFilter;
 import com.kiryukhin.auth_service.services.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
