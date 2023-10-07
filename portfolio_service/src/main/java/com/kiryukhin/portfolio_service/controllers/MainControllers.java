@@ -9,9 +9,17 @@ import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
+<<<<<<< HEAD
 public class MainControllers {
     private final UserdataResponseService userdataResponseService;
 
+=======
+@RequestMapping("/portfolio")
+public class MainControllers {
+    private final UserdataResponseService userdataResponseService;
+
+
+>>>>>>> 0c544ac (Done verification JWT Token)
     @GetMapping("/main")
     public ResponseEntity<?> pagePortfolio(Principal principal) {
         return userdataResponseService.getUserdataResponse(principal.getName());
