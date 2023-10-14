@@ -1,16 +1,15 @@
 server:
-  port: 8081
+  port: 8082
   servlet:
-    context-path: /api
+    context-path: /portfolio
 jwt:
   secret  : ${JWT_SECRET}
-  lifetime: 30m
 spring:
   datasource:
     driver-class-name : org.postgresql.Driver
-    url               : jdbc:postgresql://localhost:5433/invest_api
+    url               : jdbc:postgresql://localhost:5432/invest_api
     username          : ${SPRING_DATASOURCE_USERNAME}
     password          : ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
