@@ -1,5 +1,4 @@
 server:
-<<<<<<< HEAD
   port: 8082
   servlet:
     context-path: /portfolio
@@ -9,24 +8,8 @@ spring:
   datasource:
     driver-class-name : org.postgresql.Driver
     url               : jdbc:postgresql://localhost:5432/invest_api
-=======
-  port: 8081
-  servlet:
-    context-path: /api
-jwt:
-  secret  : ${JWT_SECRET}
-  lifetime: 30m
-spring:
-  datasource:
-    driver-class-name : org.postgresql.Driver
-    url               : jdbc:postgresql://localhost:5433/invest_api
->>>>>>> 0c544ac (Done verification JWT Token)
     username          : ${SPRING_DATASOURCE_USERNAME}
     password          : ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
-<<<<<<< HEAD
       ddl-auto: update
-=======
-      ddl-auto: none
->>>>>>> 0c544ac (Done verification JWT Token)

@@ -37,11 +37,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
-<<<<<<< HEAD
                         .requestMatchers("/main").authenticated()
-=======
-                        .requestMatchers("/portfolio/main").authenticated()
->>>>>>> 0c544ac (Done verification JWT Token)
                         .anyRequest().permitAll())
                 .sessionManagement((sm) -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
