@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
   servlet:
     context-path: /api
 jwt:
@@ -8,11 +8,11 @@ jwt:
 spring:
   datasource:
     driver-class-name : org.postgresql.Driver
-    url               : jdbc:postgresql://localhost:5433/invest_api
+    url               : jdbc:postgresql://localhost:5432/invest_api
     username          : ${SPRING_DATASOURCE_USERNAME}
     password          : ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   main:
     allow-circular-references: true
