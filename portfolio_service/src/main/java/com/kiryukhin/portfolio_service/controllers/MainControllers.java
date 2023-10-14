@@ -9,10 +9,8 @@ import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/portfolio")
 public class MainControllers {
     private final UserdataResponseService userdataResponseService;
-
 
     @GetMapping("/main")
     public ResponseEntity<?> pagePortfolio(Principal principal) {
