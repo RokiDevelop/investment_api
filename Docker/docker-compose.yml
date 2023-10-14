@@ -8,22 +8,42 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=${SPRING_DATASOURCE_USERNAME}
       - POSTGRES_DB=invest_api
+      - POSTGRES_USER=${SPRING_DATASOURCE_USERNAME}
       - POSTGRES_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     volumes:
       - "db-data:/C/Users/postgres/docker_data"
     restart: unless-stopped
   
-  portfolio-service-container:
+  portfolio-service:
     container_name: portfolio-service-container
     build:
       context: services/app/portfolio_service
       dockerfile: Dockerfile
     environment:
+      - PORT=8083
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_15.4/invest_api
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+    image: 'portfolio-service-image'
+    ports:
+      - 8083:8083
+    depends_on:
+      - postgres
+
+  auth-service:
+    container_name: auth-service-container
+    build:
+      context: services/app/auth_service
+      dockerfile: Dockerfile
+    environment:
       - PORT=8082
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_15.4/invest_api
-    image: 'portfolio-service-image'
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+    image: 'auth-service-image'
     ports:
       - 8082:8082
     depends_on:
