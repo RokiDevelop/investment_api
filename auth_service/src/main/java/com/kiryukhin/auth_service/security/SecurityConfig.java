@@ -40,9 +40,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/user").authenticated()
-                        .requestMatchers("/main").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/auth").permitAll()
                         .anyRequest().permitAll())
                 .sessionManagement((sm) -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -52,8 +52,8 @@ public class AuthService {
             return new ResponseEntity<>(new ApplicationErrorResponse(
                     HttpStatus.BAD_REQUEST.value(), "Password mismatch"), HttpStatus.BAD_REQUEST);
         }
-        if (userService.findByUsername(registrationUserDto.getUsername()).isPresent() ||
-                userService.findByEmail(registrationUserDto.getEmail()).isPresent()) {
+        if (userService.findByUsername(registrationUserDto.getUsername()) != null ||
+                userService.findByEmail(registrationUserDto.getEmail()) != null) {
             return new ResponseEntity<>(new ApplicationErrorResponse(
                     HttpStatus.BAD_REQUEST.value(), "There is already such a user"), HttpStatus.BAD_REQUEST);
         }

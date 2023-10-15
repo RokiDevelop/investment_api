@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,12 +26,14 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final static String regexPatternEmail = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
-    public Optional<User> findByUsername(String username) {
-        return userRepo.findByUsername(username);
+    public User findByUsername(String username) throws UsernameNotFoundException {
+        return userRepo.findByUsername(username).orElseThrow(() ->
+                new UsernameNotFoundException(String.format("User '%s' not found", username)));
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepo.findByEmail(email);
+    public User findByEmail(String email) throws UsernameNotFoundException {
+        return userRepo.findByEmail(email).orElseThrow(() ->
+                new UsernameNotFoundException(String.format("User '%s' not found", email)));
     }
 
     @Override
@@ -65,20 +66,9 @@ public class UserService implements UserDetailsService {
 
     private User findUser(String username) {
         if (username.matches(regexPatternEmail)) {
-            log.info("Email valid!");
-            return findUserByEmail(username);
+            return findByEmail(username);
         }
 
-        return findUserByUsername(username);
-    }
-
-    private User findUserByEmail(String username) {
-        return findByEmail(username).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", username)));
-    }
-
-    private User findUserByUsername(String username) {
-        return findByEmail(username).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", username)));
+        return findByUsername(username);
     }
 }
