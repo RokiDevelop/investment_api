@@ -1,7 +1,7 @@
 server:
   port: 8082
   servlet:
-    context-path: /api
+    context-path: /auth
 jwt:
   secret  : ${JWT_SECRET}
   lifetime: 30m
