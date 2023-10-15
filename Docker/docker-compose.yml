@@ -21,6 +21,7 @@ services:
       context: services/app/portfolio_service
       dockerfile: Dockerfile
     environment:
+
       - PORT=8083
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_15.4/invest_api
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
