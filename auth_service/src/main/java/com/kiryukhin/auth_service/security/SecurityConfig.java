@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/user").authenticated()
                         .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/login", "/registration").permitAll()
                         .anyRequest().permitAll())
                 .sessionManagement((sm) -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

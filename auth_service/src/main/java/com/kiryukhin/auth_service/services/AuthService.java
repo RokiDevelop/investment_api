@@ -52,17 +52,20 @@ public class AuthService {
             return new ResponseEntity<>(new ApplicationErrorResponse(
                     HttpStatus.BAD_REQUEST.value(), "Password mismatch"), HttpStatus.BAD_REQUEST);
         }
-        if (userService.findByUsername(registrationUserDto.getUsername()) != null ||
-                userService.findByEmail(registrationUserDto.getEmail()) != null) {
+
+        if (userService.findByUsername(registrationUserDto.getUsername()).isPresent() ||
+                userService.findByEmail(registrationUserDto.getEmail()).isPresent()) {
             return new ResponseEntity<>(new ApplicationErrorResponse(
                     HttpStatus.BAD_REQUEST.value(), "There is already such a user"), HttpStatus.BAD_REQUEST);
         }
+
         List<String> rolesList = new ArrayList<>();
         rolesList.add("ROLE_USER");
 
         User user = userService.createNewUser(registrationUserDto, rolesList);
         UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getEmail());
         return ResponseEntity.ok(userDto);
+
     }
 
 }
