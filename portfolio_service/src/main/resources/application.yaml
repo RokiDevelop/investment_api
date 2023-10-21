@@ -11,7 +11,7 @@ spring:
     name: portfolio-service
   datasource:
     driver-class-name : org.postgresql.Driver
-    url               : jdbc:postgresql://localhost:5432/invest_api
+    url               : jdbc:postgresql://localhost:${POSTGRES_DB_PORT}/invest_api
     username          : ${SPRING_DATASOURCE_USERNAME}
     password          : ${SPRING_DATASOURCE_PASSWORD}
   jpa:
