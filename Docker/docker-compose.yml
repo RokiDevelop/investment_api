@@ -6,7 +6,7 @@ services:
       context: services/postgres
       dockerfile: Dockerfile
     ports:
-      - "5432:5432"
+      - ${POSTGRES_DB_PORT}:5432
     environment:
       - POSTGRES_DB=invest_api
       - POSTGRES_USER=${SPRING_DATASOURCE_USERNAME}
