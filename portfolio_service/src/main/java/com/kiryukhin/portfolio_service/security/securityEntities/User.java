@@ -1,5 +1,6 @@
 package com.kiryukhin.portfolio_service.security.securityEntities;
 
+import com.kiryukhin.portfolio_service.entities.PortfolioEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -32,12 +34,17 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @OneToOne(mappedBy = "user")
+    @ToString.Exclude
+    private PortfolioEntity portfolioEntity;
+
     @ManyToMany
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+
     @ToString.Exclude
     private Collection<Role> roles;
 
