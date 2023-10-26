@@ -1,23 +1,19 @@
 package com.kiryukhin.portfolio_service.controllers;
 
-import com.kiryukhin.portfolio_service.controllers.model.RequestBuyStockDto;
-import com.kiryukhin.portfolio_service.controllers.model.RequestGetPortfolioInfoDto;
+import com.kiryukhin.portfolio_service.controllers.model.requests.RequestBuyStockDto;
+import com.kiryukhin.portfolio_service.controllers.model.responses.ResponseGetPortfolioInfoDto;
 import com.kiryukhin.portfolio_service.services.IOperationsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
-@RequestMapping()
+@RequestMapping
+@RequiredArgsConstructor
 public class PortfolioDataController {
     private final IOperationsService operationsService;
-
-    @Autowired
-    public PortfolioDataController(IOperationsService operationsService) {
-        this.operationsService = operationsService;
-    }
 
     @PostMapping("/create_portfolio")
     public ResponseEntity<?> createPortfolio(Principal principal) {
@@ -30,8 +26,8 @@ public class PortfolioDataController {
     }
 
     @GetMapping("/portfolio_info")
-    public ResponseEntity<?> getInfo(@RequestBody RequestGetPortfolioInfoDto request, Principal principal) {
-        return operationsService.getPortfolioInfo(request, principal);
+    public ResponseEntity<ResponseGetPortfolioInfoDto> getInfo(Principal principal) {
+        return operationsService.getPortfolioInfo(principal);
     }
 
 //    @PostMapping("/sellStock")

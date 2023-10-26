@@ -29,6 +29,16 @@ public class AssetStock {
     private PortfolioEntity portfolio;
 
     @Override
+    public String toString() {
+        return "AssetStock{" +
+                "id=" + id +
+                ", stock=" + stock +
+                ", amount=" + amount +
+                ", portfolio=" + portfolio +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

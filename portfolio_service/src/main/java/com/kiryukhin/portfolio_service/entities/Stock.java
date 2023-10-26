@@ -20,4 +20,12 @@ public class Stock {
 
     @Column(name = "ticker", unique = true)
     private String ticker;
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "id=" + id +
+                ", ticker='" + ticker + '\'' +
+                '}';
+    }
 }

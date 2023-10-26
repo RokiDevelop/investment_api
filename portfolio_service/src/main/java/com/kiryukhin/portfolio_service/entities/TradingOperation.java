@@ -39,6 +39,18 @@ public class TradingOperation {
     private PortfolioEntity portfolio;
 
     @Override
+    public String toString() {
+        return "TradingOperation{" +
+                "id=" + id +
+                ", stock=" + stock +
+                ", amount=" + amount +
+                ", price=" + price +
+                ", operationDate=" + operationDate +
+                ", portfolio=" + portfolio +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

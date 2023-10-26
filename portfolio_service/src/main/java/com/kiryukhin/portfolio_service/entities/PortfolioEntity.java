@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -36,4 +37,27 @@ public class PortfolioEntity {
 
     @OneToMany(mappedBy = "portfolio")
     private Set<TradingOperation> tradingOperations;
+
+    @Override
+    public String toString() {
+        return "PortfolioEntity{" +
+                "id=" + id +
+                ", user=" + user +
+                ", assetStocks=" + assetStocks +
+                ", tradingOperations=" + tradingOperations +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PortfolioEntity that = (PortfolioEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(assetStocks, that.assetStocks) && Objects.equals(tradingOperations, that.tradingOperations);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, assetStocks, tradingOperations);
+    }
 }

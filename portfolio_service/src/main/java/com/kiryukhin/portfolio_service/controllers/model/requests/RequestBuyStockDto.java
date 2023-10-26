@@ -1,4 +1,4 @@
-package com.kiryukhin.portfolio_service.controllers.model;
+package com.kiryukhin.portfolio_service.controllers.model.requests;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
