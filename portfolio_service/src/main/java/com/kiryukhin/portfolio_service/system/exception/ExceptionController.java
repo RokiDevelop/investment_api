@@ -8,8 +8,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class ExceptionController extends ResponseEntityExceptionHandler {
-    @ExceptionHandler({PortfolioNotFoundException.class, StockNotFoundException.class})
+    @ExceptionHandler({
+            PortfolioNotFoundException.class,
+            StockNotFoundException.class,
+            AssetStockNotFoundException.class,
+            TradingOperationTypeNotFoundException.class
+    })
     public ResponseEntity<ErrorMessageDto> handleNotFound(Exception ex) {
-        return new ResponseEntity<ErrorMessageDto>(new ErrorMessageDto(ex.getLocalizedMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorMessageDto(ex.getLocalizedMessage()), HttpStatus.NOT_FOUND);
     }
 }

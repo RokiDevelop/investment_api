@@ -23,3 +23,6 @@ eureka:
     serviceUrl:
       defaultZone: 'http://discovery-service:8081/eureka'
     enabled: true
+logging:
+  level:
+    com.kiryukhin.portfolio_service: DEBUG

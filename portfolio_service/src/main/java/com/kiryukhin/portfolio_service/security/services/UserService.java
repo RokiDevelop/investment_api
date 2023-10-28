@@ -1,6 +1,6 @@
 package com.kiryukhin.portfolio_service.security.services;
 
-import com.kiryukhin.portfolio_service.repositories.UserRepository;
+import com.kiryukhin.portfolio_service.repositories.user.UserRepository;
 import com.kiryukhin.portfolio_service.security.securityEntities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

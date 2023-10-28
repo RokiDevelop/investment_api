@@ -1,4 +1,4 @@
-package com.kiryukhin.portfolio_service.services;
+package com.kiryukhin.portfolio_service.services.stock;
 
 import com.kiryukhin.portfolio_service.entities.Stock;
 
