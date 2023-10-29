@@ -11,9 +11,10 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "trading_operation", indexes = {
-        @Index(name = "idx_portfolio", columnList = "portfolio_id"),
-        @Index(name = "idx_portfolio_stock", columnList = "portfolio_id, stock_id")})
+@Table(name = "trading_operation",
+        indexes = {
+                @Index(name = "idx_portfolio", columnList = "portfolio_id"),
+                @Index(name = "idx_portfolio_stock", columnList = "portfolio_id, stock_id")})
 public class TradingOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

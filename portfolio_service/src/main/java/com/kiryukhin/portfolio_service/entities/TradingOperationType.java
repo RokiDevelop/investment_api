@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "trading_operation_type")
+@Table(name = "trading_operation_type",
+        uniqueConstraints= @UniqueConstraint(columnNames={"type"}))
 public class TradingOperationType {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

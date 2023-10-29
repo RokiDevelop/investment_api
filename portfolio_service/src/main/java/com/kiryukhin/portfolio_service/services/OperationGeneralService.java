@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -105,6 +104,7 @@ public class OperationGeneralService implements IOperationsGeneralService {
         }
     }
 
+    @Override
     public void updateAllAssetStockByPrincipal(Principal principal) {
         var user = getUserByPrincipal(principal);
         var portfolio = getPortfolioByUser(user);

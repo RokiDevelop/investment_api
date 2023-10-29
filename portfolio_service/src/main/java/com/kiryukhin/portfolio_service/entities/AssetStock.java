@@ -10,9 +10,11 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "assets_stock", indexes = {
-        @Index(name = "idx_stock_portfolio", columnList = "stock_id, portfolio_id")
-})
+@Table(name = "assets_stock",
+        uniqueConstraints= @UniqueConstraint(columnNames={"stock_id", "portfolio_id"}),
+        indexes = {
+                @Index(name = "idx_stock_portfolio", columnList = "stock_id, portfolio_id")
+        })
 public class AssetStock {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

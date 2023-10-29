@@ -12,7 +12,9 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "portfolio_entities")
+@Table(name = "portfolio_entities",
+        uniqueConstraints= @UniqueConstraint(columnNames={"user_id"})
+)
 public class PortfolioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,7 +22,7 @@ public class PortfolioEntity {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     @EqualsAndHashCode.Exclude

@@ -20,4 +20,6 @@ public interface IOperationsGeneralService {
     void updateAssetStockByRequest(
             TradingOperationRequest.RecordTradingOperationRequest request,
             Principal principal);
+
+    void updateAllAssetStockByPrincipal(Principal principal);
 }
