@@ -10,6 +10,9 @@ import java.security.Principal;
 public interface IOperationsGeneralService {
     ResponseEntity<?> createPortfolio(
             Principal principal);
+
+    ResponseEntity<TradingOperationResponse.TradingOperationListResponse> getTradingOperationListByTicker(String ticker, Principal principal);
+
     ResponseEntity<PortfolioInfoResponse.GetPortfolioInfoResponse> getPortfolioInfo(
             Principal principal);
 
@@ -21,5 +24,7 @@ public interface IOperationsGeneralService {
             TradingOperationRequest.RecordTradingOperationRequest request,
             Principal principal);
 
-    void updateAllAssetStockByPrincipal(Principal principal);
+    ResponseEntity<?> updateAllAssetStockByPrincipal(Principal principal);
+
+    ResponseEntity<TradingOperationResponse.TradingOperationListResponse> getTradingOperationList(Principal principal);
 }

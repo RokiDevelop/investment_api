@@ -1,4 +1,4 @@
-package com.kiryukhin.portfolio_service.services.trading;
+package com.kiryukhin.portfolio_service.services.tradingOperation;
 
 import com.kiryukhin.portfolio_service.entities.*;
 import com.kiryukhin.portfolio_service.repositories.tradingOperation.ITradingOperationRepository;
@@ -17,11 +17,14 @@ public class TradingOperationService implements ITradingOperationService<Trading
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public TradingOperation executeTradingOperation(Stock stock, Long amount, PortfolioEntity portfolio, TradingOperationType tradingOperationType) {
+    public TradingOperation executeTradingOperation(Stock stock,
+                                                    Long amount,
+                                                    PortfolioEntity portfolio,
+                                                    TradingOperationType tradingOperationType,
+                                                    Double price) {
         TradingOperation tradingOperation = new TradingOperation();
         tradingOperation.setOperationDate(LocalDateTime.now());
-        //TODO: get price into feign client
-        tradingOperation.setPrice(100.0);
+        tradingOperation.setPrice(price);
         tradingOperation.setAmount(amount);
         tradingOperation.setPortfolio(portfolio);
         tradingOperation.setStock(stock);
@@ -31,12 +34,12 @@ public class TradingOperationService implements ITradingOperationService<Trading
     }
 
     @Override
-    public List<TradingOperation> findOperationByPortfolioIdAndStockId(Long portfolioId, Long stockId) {
-        return tradingOperationRepository.findOperationByPortfolioIdAndStockId(portfolioId, stockId);
+    public List<TradingOperation> findOperationsByPortfolioIdAndStockId(Long portfolioId, Long stockId) {
+        return tradingOperationRepository.findOperationsByPortfolioIdAndStockId(portfolioId, stockId);
     }
 
     @Override
-    public List<TradingOperation> findOperationByPortfolioId(Long portfolioId) {
-        return tradingOperationRepository.findOperationByPortfolioId(portfolioId);
+    public List<TradingOperation> findOperationsByPortfolioId(Long portfolioId) {
+        return tradingOperationRepository.findOperationsByPortfolioId(portfolioId);
     }
 }

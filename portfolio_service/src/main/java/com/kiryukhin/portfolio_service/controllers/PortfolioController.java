@@ -14,13 +14,18 @@ import java.security.Principal;
 public class PortfolioController {
     private final IOperationsGeneralService operationsService;
 
-    @PostMapping("/create_portfolio")
+    @PostMapping("/createPortfolio")
     public ResponseEntity<?> createPortfolio(Principal principal) {
         return operationsService.createPortfolio(principal);
     }
 
-    @GetMapping("/portfolio_info")
+    @GetMapping("/portfolioInfo")
     public ResponseEntity<PortfolioInfoResponse.GetPortfolioInfoResponse> getInfo(Principal principal) {
         return operationsService.getPortfolioInfo(principal);
+    }
+
+    @GetMapping("/updatePortfolio")
+    public ResponseEntity<?> updatePortfolio(Principal principal) {
+        return operationsService.updateAllAssetStockByPrincipal(principal);
     }
 }

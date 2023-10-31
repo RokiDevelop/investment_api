@@ -44,11 +44,12 @@ public class UserService implements UserDetailsService {
 
     private User findUserByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", email)));
+                new UsernameNotFoundException("User " + email + " not found!")
+        );
     }
 
     private User findUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", username)));
+                new UsernameNotFoundException("User" + username + " not found"));
     }
 }

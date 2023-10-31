@@ -25,11 +25,9 @@ public class PortfolioEntity {
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
-    @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "portfolio")
     private Set<AssetStock> assetStocks;
 
-    @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "portfolio")
     private Set<TradingOperation> tradingOperations;
 

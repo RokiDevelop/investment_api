@@ -13,7 +13,7 @@ public interface ITradingOperationRepository<T, ID>{
     void deleteById(ID id);
     void delete(T t);
 
-    List<T> findOperationByPortfolioIdAndStockId(Long portfolioId, Long stockId);
+    List<T> findOperationsByPortfolioIdAndStockId(Long portfolioId, Long stockId);
 
-    List<T> findOperationByPortfolioId(ID portfolioId);
+    List<T> findOperationsByPortfolioId(ID portfolioId);
 }

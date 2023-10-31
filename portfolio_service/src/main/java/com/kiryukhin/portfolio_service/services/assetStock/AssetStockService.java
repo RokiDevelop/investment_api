@@ -7,6 +7,8 @@ import com.kiryukhin.portfolio_service.repositories.assetStock.IAssetStockReposi
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AssetStockService implements IAssetStockService {
@@ -20,5 +22,15 @@ public class AssetStockService implements IAssetStockService {
     @Override
     public AssetStock save(AssetStock assetStock) {
         return assetStockRepository.save(assetStock);
+    }
+
+    @Override
+    public void saveAll(List<AssetStock> assetStockList) {
+        assetStockRepository.saveAll(assetStockList);
+    }
+
+    @Override
+    public void deleteAllByPortfolio(PortfolioEntity portfolio) {
+        assetStockRepository.deleteAllByPortfolio(portfolio);
     }
 }

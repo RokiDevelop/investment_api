@@ -10,19 +10,29 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/trading_operation")
+@RequestMapping("/tradingOperation")
 @RequiredArgsConstructor
 public class PortfolioTradingOperationsController {
     private final IOperationsGeneralService operationsService;
 
-    @PostMapping("/create_trading_operation")
+    @PostMapping("/createTradingOperation")
     public ResponseEntity<TradingOperationResponse.RecordTradingOperationResponse> createOperation(
             @RequestBody TradingOperationRequest.RecordTradingOperationRequest request,
             Principal principal) {
         var response = operationsService.createTradingOperation(request, principal);
-
         operationsService.updateAssetStockByRequest(request, principal);
 
         return response;
+    }
+
+    @GetMapping("/{ticker}")
+    public ResponseEntity<TradingOperationResponse.TradingOperationListResponse> getByTicker(
+            @PathVariable String ticker, Principal principal){
+        return operationsService.getTradingOperationListByTicker(ticker, principal);
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<TradingOperationResponse.TradingOperationListResponse> getAll(Principal principal){
+        return operationsService.getTradingOperationList(principal);
     }
 }

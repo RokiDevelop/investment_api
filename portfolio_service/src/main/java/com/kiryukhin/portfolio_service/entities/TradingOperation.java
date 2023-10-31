@@ -44,6 +44,17 @@ public class TradingOperation {
     private TradingOperationType tradingOperationType;
 
     @Override
+    public String toString() {
+        return "TradingOperation{" +
+                "stock=" + stock +
+                ", amount=" + amount +
+                ", price=" + price +
+                ", operationDate=" + operationDate +
+                ", tradingOperationType=" + tradingOperationType.toOperationType() +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -13,9 +13,17 @@ import java.util.Objects;
 @Table(name = "assets_stock",
         uniqueConstraints= @UniqueConstraint(columnNames={"stock_id", "portfolio_id"}),
         indexes = {
+                @Index(name = "idx_portfolio", columnList = "portfolio_id"),
                 @Index(name = "idx_stock_portfolio", columnList = "stock_id, portfolio_id")
         })
 public class AssetStock {
+
+    public AssetStock(Stock stock, Long amount, PortfolioEntity portfolio) {
+        this.stock = stock;
+        this.amount = amount;
+        this.portfolio = portfolio;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
@@ -24,11 +32,11 @@ public class AssetStock {
     @Column(name = "amount", nullable = false)
     private Long amount;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "stock_id", nullable = false)
     private Stock stock;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "portfolio_id", nullable = false)
     private PortfolioEntity portfolio;
 

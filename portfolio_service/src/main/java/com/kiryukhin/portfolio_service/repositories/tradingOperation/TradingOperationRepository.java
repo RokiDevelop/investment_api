@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TradingOperationRepository extends ITradingOperationRepository<TradingOperation, Long>,
         JpaRepository<TradingOperation, Long> {
-
 }
