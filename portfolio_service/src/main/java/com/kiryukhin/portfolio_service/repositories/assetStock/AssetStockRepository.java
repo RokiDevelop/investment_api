@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AssetStockRepository extends IAssetStockRepository<AssetStock, Long>,
+public interface AssetStockRepository extends IAssetStockRepository<AssetStock>,
         JpaRepository<AssetStock, Long> {
 
     @Override
@@ -24,7 +24,7 @@ public interface AssetStockRepository extends IAssetStockRepository<AssetStock, 
     default void deleteAllByPortfolio(PortfolioEntity portfolio) {
         List<AssetStock> assetStocks = findAllByPortfolio(portfolio);
         deleteAllById(assetStocks.stream().map(AssetStock::getId).toList());
-    };
+    }
 
     List<AssetStock> findAllByPortfolio(PortfolioEntity portfolio);
 

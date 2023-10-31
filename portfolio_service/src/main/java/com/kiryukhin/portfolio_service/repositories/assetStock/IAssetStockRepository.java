@@ -7,7 +7,7 @@ import com.kiryukhin.portfolio_service.entities.Stock;
 import java.util.List;
 
 
-public interface IAssetStockRepository<T, ID> {
+public interface IAssetStockRepository<T> {
     T findByStockAndPortfolio(Stock stock, PortfolioEntity portfolio);
 
     T save(T assetStock);

@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AssetStockService implements IAssetStockService {
-    private final IAssetStockRepository<AssetStock, Long> assetStockRepository;
+    private final IAssetStockRepository<AssetStock> assetStockRepository;
 
     @Override
     public AssetStock findByStockAndPortfolio(Stock stock, PortfolioEntity portfolio) {
