@@ -1,4 +1,4 @@
-package com.kiryukhin.portfolio_service.repositories;
+package com.kiryukhin.portfolio_service.repositories.user;
 
 import com.kiryukhin.portfolio_service.security.securityEntities.User;
 import org.springframework.data.repository.CrudRepository;
