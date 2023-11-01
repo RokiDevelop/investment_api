@@ -1,6 +1,6 @@
 package com.kiryukhin.portfolio_service.security.services;
 
-import com.kiryukhin.portfolio_service.repositories.UserRepository;
+import com.kiryukhin.portfolio_service.repositories.user.UserRepository;
 import com.kiryukhin.portfolio_service.security.securityEntities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,11 +44,12 @@ public class UserService implements UserDetailsService {
 
     private User findUserByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", email)));
+                new UsernameNotFoundException("User " + email + " not found!")
+        );
     }
 
     private User findUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", username)));
+                new UsernameNotFoundException("User" + username + " not found"));
     }
 }

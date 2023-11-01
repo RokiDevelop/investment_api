@@ -22,9 +22,9 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(jwtAuthFilter)).uri("http://localhost:8082/"))
-                .route("portfolio", r -> r.path("/portfolio/**").filters(f -> f.filter(jwtAuthFilter)).uri("http://localhost:8083/"))
-                .route("performance", r -> r.path("/performance/**").filters(f -> f.filter(jwtAuthFilter)).uri("http://localhost:8084/"))
+                .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://auth-service"))
+                .route("portfolio", r -> r.path("/portfolio/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://portfolio-service"))
+                .route("performance", r -> r.path("/performance/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://performance-service"))
                 .build();
     }
 }

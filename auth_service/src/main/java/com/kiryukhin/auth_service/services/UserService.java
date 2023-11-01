@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,14 +27,12 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final static String regexPatternEmail = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
-    public User findByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", username)));
+    public Optional<User> findByUsername(String username) {
+        return userRepo.findByUsername(username);
     }
 
-    public User findByEmail(String email) throws UsernameNotFoundException {
-        return userRepo.findByEmail(email).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("User '%s' not found", email)));
+    public Optional<User> findByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 
     @Override
@@ -64,11 +63,20 @@ public class UserService implements UserDetailsService {
         return userRepo.save(user);
     }
 
-    private User findUser(String username) {
+    private User findUser(String username) throws UsernameNotFoundException{
+        Optional<User> user;
         if (username.matches(regexPatternEmail)) {
-            return findByEmail(username);
+            user = findByEmail(username);
+            if (user.isPresent()) {
+                return findByEmail(username).get();
+            }
         }
 
-        return findByUsername(username);
+        user = findByUsername(username);
+        if (user.isPresent()) {
+            return findByUsername(username).get();
+        }
+
+        throw new UsernameNotFoundException("User not found");
     }
 }
