@@ -1,0 +1,31 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /market_api
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://discovery-service:8081/eureka'
+    enabled: true
+
+spring:
+  application:
+    name: market-service
+  cloud:
+    openfeign:
+      client:
+        config:
+          moex-service:
+            url: https://iss.moex.com/iss/engines/stock/markets/shares/securities
+
+moex:
+  response:
+    #   to receive metadata in response or not
+    metadata: "off"
+    #   name of the data list that is needed
+    name-only-datalist: "marketdata"
+  parse:
+    desired-board-id: "TQBR"
+    datalist: "marketdata"
+    data-from-datalist: "data"
