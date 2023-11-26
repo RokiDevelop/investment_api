@@ -3,3 +3,4 @@
 /Docker/services/app/discovery_service/*.jar
 /Docker/services/app/gateway_service/*.jar
 /Docker/services/app/performance_service/*.jar
+/Docker/services/app/market_service/*.jar
