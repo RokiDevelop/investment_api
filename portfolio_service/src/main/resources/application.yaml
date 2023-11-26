@@ -22,7 +22,7 @@ spring:
       client:
         config:
           market-service:
-            url: http://localhost:8085/market_api
+            url: http://market-service:8085/market_api
 
 eureka:
   client:
