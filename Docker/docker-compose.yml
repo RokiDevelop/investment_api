@@ -80,10 +80,6 @@ services:
       dockerfile: Dockerfile
     environment:
       - PORT=8084
-      # - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_15.4/invest_api
-      # - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
-      # - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-      # - JWT_SECRET=${JWT_SECRET}
     image: 'performance-service-image'
     ports:
       - 8084:8084
@@ -98,7 +94,6 @@ services:
     image: 'market-service-image'
     ports:
       - 8085:8085
-
 
 volumes:
    db-data:

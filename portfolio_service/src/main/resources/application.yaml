@@ -2,14 +2,35 @@ server:
   port: 8083
   servlet:
     context-path: /portfolio
+
 jwt:
   secret  : ${JWT_SECRET}
+
 spring:
+  application:
+    name: portfolio-service
   datasource:
     driver-class-name : org.postgresql.Driver
-    url               : jdbc:postgresql://localhost:5432/invest_api
+    url               : jdbc:postgresql://localhost:${POSTGRES_DB_PORT}/invest_api
     username          : ${SPRING_DATASOURCE_USERNAME}
     password          : ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
+  cloud:
+    openfeign:
+      client:
+        config:
+          market-service:
+            url: http://localhost:8085/market_api
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://discovery-service:8081/eureka'
+    enabled: true
+
+
+logging:
+  level:
+    com.kiryukhin.portfolio_service: DEBUG

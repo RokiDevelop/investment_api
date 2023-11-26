@@ -6,9 +6,11 @@ jwt:
   secret  : ${JWT_SECRET}
   lifetime: 30m
 spring:
+  application:
+    name: auth-service
   datasource:
     driver-class-name : org.postgresql.Driver
-    url               : jdbc:postgresql://localhost:5432/invest_api
+    url               : jdbc:postgresql://localhost:${POSTGRES_DB_PORT}/invest_api
     username          : ${SPRING_DATASOURCE_USERNAME}
     password          : ${SPRING_DATASOURCE_PASSWORD}
   jpa:
@@ -16,3 +18,9 @@ spring:
       ddl-auto: update
   main:
     allow-circular-references: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://discovery-service:8081/eureka'
+    enabled: true
