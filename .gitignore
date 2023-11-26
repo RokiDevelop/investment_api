@@ -1,1 +1,6 @@
 /Docker/services/app/portfolio_service/*.jar
+/Docker/services/app/auth_service/*.jar
+/Docker/services/app/discovery_service/*.jar
+/Docker/services/app/gateway_service/*.jar
+/Docker/services/app/performance_service/*.jar
+/Docker/services/app/market_service/*.jar
