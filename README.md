@@ -24,14 +24,9 @@ The project consists of the following microservices:
 To install and run the project, follow these steps:
 
 1. Clone the repository to your local machine.
-2. Navigate to the project directory and open a terminal.
-3. Run the following command to build the project using Maven:
-   ```mvn clean install```
-4. After a successful build, copy the generated JAR files for each microservice to their respective directories. The directories are typically located at 
-_/docker/services/api/[service-name]_
-5. Install Docker on your system if it's not already installed.
-6. Navigate to the /Docker directory in the project.
-7. Run the following command to start the Docker containers for the microservices:
+2. Install Docker on your system if it's not already installed.
+3. Navigate to the /Docker directory in the project.
+4. Run the command to start the Docker containers for the microservices:
   ```docker-compose up```
 
 ## Usage
