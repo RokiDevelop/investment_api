@@ -25,6 +25,7 @@ public class GatewayConfig {
                 .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://auth-service"))
                 .route("portfolio", r -> r.path("/portfolio/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://portfolio-service"))
                 .route("performance", r -> r.path("/performance/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://performance-service"))
+                .route("market_api", r -> r.path("/market_api/**").filters(f -> f.filter(jwtAuthFilter)).uri("lb://market-service"))
                 .build();
     }
 }
