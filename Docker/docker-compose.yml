@@ -2,9 +2,7 @@ version: '3.8'
 services:
   postgres:
     container_name: 'postgres_15.4'
-    build:
-      context: services/postgres
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/docker-postgres'
     ports:
       - ${POSTGRES_DB_PORT}:5432
     environment:
@@ -17,40 +15,30 @@ services:
 
   discovery-service:
     container_name: discovery-service-container
-    build:
-      context: services/app/discovery_service
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/discovery-service'
     environment:
       - PORT=8081
-    image: 'discovery-service-image'
     ports:
       - 8081:8081
 
   gateway-service:
     container_name: gateway-service-container
-    build:
-      context: services/app/gateway_service
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/gateway-service'
     environment:
       - PORT=8080
       - JWT_SECRET=${JWT_SECRET}
-    image: 'gateway-service-image'
     ports:
       - 8080:8080
   
   portfolio-service:
     container_name: portfolio-service-container
-    build:
-      context: services/app/portfolio_service
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/portfolio-service'
     environment:
-
       - PORT=8083
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_15.4/invest_api
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
-    image: 'portfolio-service-image'
     ports:
       - 8083:8083
     depends_on:
@@ -58,16 +46,13 @@ services:
 
   auth-service:
     container_name: auth-service-container
-    build:
-      context: services/app/auth_service
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/auth-service'
     environment:
       - PORT=8082
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_15.4/invest_api
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
-    image: 'auth-service-image'
     ports:
       - 8082:8082
     depends_on:
@@ -75,23 +60,17 @@ services:
 
   performance-service:
     container_name: performance-service-container
-    build:
-      context: services/app/performance_service
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/performance-service'
     environment:
       - PORT=8084
-    image: 'performance-service-image'
     ports:
       - 8084:8084
       
   market-service:
     container_name: market-service-container
-    build:
-      context: services/app/market_service
-      dockerfile: Dockerfile
+    image: 'romankiryukhin/market-service'
     environment:
       - PORT=8085
-    image: 'market-service-image'
     ports:
       - 8085:8085
 
